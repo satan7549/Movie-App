@@ -5,7 +5,7 @@ import { getAllMovies } from "../redux/Movie/action";
 
 const Pagination = () => {
   const [page, setPage] = useState(1);
-  const { totalMovie, loading, error } = useSelector((store) => store);
+  const { totalMovie, loading } = useSelector((store) => store);
   const dispatch = useDispatch();
 
   useEffect(() => {

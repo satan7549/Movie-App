@@ -59,11 +59,11 @@ export const getSingleMovies = (id) => async (dispatch) => {
 
 //action for update Movie
 export const updateMovie = (id, newData) => async (dispatch) => {
-  // console.log(id, newData);
+  
   dispatch({ type: LOADING_SUCESS });
   try {
     let data = await updateMovieAPI(id, newData);
-    // console.log("data in action", data);
+   
     dispatch({ type: UPDATE_MOVIE, payload: { id, data } });
   } catch (error) {
     dispatch({ type: ERROR_SUCESS });

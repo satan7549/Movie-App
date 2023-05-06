@@ -9,4 +9,4 @@ export const GET_SINGLE_MOVIE="get/singleMovie"
 export const ADD_MOVIE = "add/movie";
 export const REMOVE_MOVIE = "remove/movie";
 export const UPDATE_MOVIE = "update/movie";
-export const SEARCH_MOVIE = "search/movie";
+

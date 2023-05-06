@@ -5,7 +5,6 @@ import {
   GET_SINGLE_MOVIE,
   LOADING_SUCESS,
   REMOVE_MOVIE,
-  SEARCH_MOVIE,
   UPDATE_MOVIE,
 } from "./actionType";
 
