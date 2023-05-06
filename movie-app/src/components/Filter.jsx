@@ -15,7 +15,7 @@ const Filter = () => {
 
   return (
     <HStack m={"auto"}>
-      {/* sort their movie library by title, director, year, or genre */}
+
       <Box>
         <Select
           placeholder="Sort"
