@@ -6,20 +6,21 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  Flex,
   Heading,
   Image,
   Stack,
   Text,
-  Wrap,
-  WrapItem,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import UpdateModal from "./UpdateModal";
 import { useDispatch } from "react-redux";
 import { deleteMovie } from "../redux/Movie/action";
+import { NavLink } from "react-router-dom";
 
 const MovieCard = ({
-  id,
+  _id,
   title,
   image,
   director,
@@ -30,49 +31,69 @@ const MovieCard = ({
   synopsis,
 }) => {
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const removeMovie = (id) => {
     dispatch(deleteMovie(id));
+    toast({
+      title: "Movie Deleted.",
+      description: `Successfully  Deleted ID:- ${id}`,
+      status: "success",
+      position: "top-right",
+      duration: 9000,
+      isClosable: true,
+    });
   };
 
   return (
-    <Card maxW="sm">
-      <CardBody>
-        <Image src={image} alt={id} borderRadius="lg" />
-        <Stack mt="6" spacing="3">
-          <Heading size="md">{title}</Heading>
-          <Wrap>
-            <WrapItem>
-              <Text>Director:- {director}</Text>
-            </WrapItem>
-            <WrapItem>
-              <Text>Release:- {year}</Text>
-            </WrapItem>
-            <WrapItem>
-              <Text>Genre:- {genre}</Text>
-            </WrapItem>
+    <Card maxW="sm" >
+      <CardBody >
+        <NavLink to={`/movie/${_id}`}>
+          <Stack mt="6" spacing="3" >
+            <Image
+              m={"auto"}
+              h={"200px"}
+              w={"95%"}
+              src={image}
+              alt={_id}
+              borderRadius="lg"
+              margin={"auto"}
+            />
 
-            <WrapItem>
-              <Text>Cast:- {cast}</Text>
-            </WrapItem>
+            <Box h={"50px"} overflowY={"hidden"}>
+              <Heading size="md" textAlign={"center"}>
+                {title}
+              </Heading>
+            </Box>
+            <Flex direction={"column"} >
+              <Text m={"auto"} as={"p"} fontSize={"lg"}>
+                Director:-{" "}
+                {director.length < 8 ? director : `${director.slice(0, 8)}...`}
+              </Text>
 
-            <WrapItem>
-              <Text>Rating:- {rating}</Text>
-            </WrapItem>
-          </Wrap>
-          <Box h={"100px"}>
-            <Text>Synopsis:- {synopsis}</Text>
-          </Box>
-        </Stack>
+              <Text m={"auto"} as={"p"} fontSize={"lg"}>
+                Release:- {year}
+              </Text>
+              <Text m={"auto"} as={"p"} fontSize={"lg"}>
+                Rating:- {rating}
+              </Text>
+            </Flex>
+          </Stack>
+        </NavLink>
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2">
-          <UpdateModal id={id} />
+        <ButtonGroup
+          m={"auto"}
+          width={"100%"}
+          justifyContent={"space-between"}
+          spacing="2"
+        >
+          <UpdateModal id={_id} />
           <Button
             variant="solid"
             colorScheme="red"
-            onClick={() => removeMovie(id)}
+            onClick={() => removeMovie(_id)}
           >
             Delete
           </Button>

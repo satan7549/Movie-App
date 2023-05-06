@@ -2,15 +2,19 @@ import {
   ADD_MOVIE,
   ERROR_SUCESS,
   GET_MOVIE,
+  GET_SINGLE_MOVIE,
   LOADING_SUCESS,
   REMOVE_MOVIE,
+  SEARCH_MOVIE,
   UPDATE_MOVIE,
 } from "./actionType";
 
 const initialState = {
   movies: [],
+  singleMovie: {},
   loading: false,
   error: false,
+  totalMovie: 0,
 };
 
 const movieReducer = (state = initialState, { type, payload }) => {
@@ -40,11 +44,19 @@ const movieReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         loading: false,
-        movies: payload,
+        movies: payload.data,
+        totalMovie: payload.totalMovie,
       };
     }
+    case GET_SINGLE_MOVIE: {
+      return {
+        ...state,
+        loading: false,
+        singleMovie: payload.data,
+      };
+    }
+  
     case UPDATE_MOVIE: {
-      console.log("movei/reducer/payload :", payload);
       const newItems = state.movies.map((movie) => {
         if (movie.id === payload.id) {
           return payload.data;
@@ -59,7 +71,7 @@ const movieReducer = (state = initialState, { type, payload }) => {
     }
 
     case REMOVE_MOVIE: {
-      const newItems = state.cartItems.filter((movie) => movie.id !== payload);
+      const newItems = state.movies.filter((movie) => movie.id !== payload);
       return {
         ...state,
         loading: false,

@@ -2,38 +2,62 @@ import {
   ADD_MOVIE,
   ERROR_SUCESS,
   GET_MOVIE,
+  GET_SINGLE_MOVIE,
   LOADING_SUCESS,
   REMOVE_MOVIE,
   UPDATE_MOVIE,
 } from "./actionType";
 import {
-  addMovieToLibrary,
+  addMovieToLibraryAPI,
   deleteMovieAPI,
   getAllMoviesAPI,
+  getSingleMoviesAPI,
   updateMovieAPI,
 } from "./fetchAPI";
 
+//action for add movies
 export const addMovie = (item) => async (dispatch) => {
   dispatch({ type: LOADING_SUCESS });
   try {
-    let data = await addMovieToLibrary(item);
+    let data = await addMovieToLibraryAPI(item);
     dispatch({ type: ADD_MOVIE, payload: data });
   } catch (error) {
     dispatch({ type: ERROR_SUCESS });
   }
 };
 
-export const getAllMovies = () => async (dispatch) => {
+//action for get All movies
+export const getAllMovies = (query, sort, page) => async (dispatch) => {
+  
   dispatch({ type: LOADING_SUCESS });
   try {
-    let data = await getAllMoviesAPI();
-    dispatch({ type: GET_MOVIE, payload: data });
+    let data = await getAllMoviesAPI(
+      `q=${query}&sort=${sort}&page=${page}&limit=4`
+    );
+    dispatch({
+      type: GET_MOVIE,
+      payload: { data: data.movies, totalMovie: data.movieCount },
+    });
   } catch (error) {
     dispatch({ type: ERROR_SUCESS });
   }
 };
 
-//update Movie
+//action for get single movies detail
+export const getSingleMovies = (id) => async (dispatch) => {
+  dispatch({ type: LOADING_SUCESS });
+  try {
+    let data = await getSingleMoviesAPI(id);
+    dispatch({
+      type: GET_SINGLE_MOVIE,
+      payload: { data: data.movies },
+    });
+  } catch (error) {
+    dispatch({ type: ERROR_SUCESS });
+  }
+};
+
+//action for update Movie
 export const updateMovie = (id, newData) => async (dispatch) => {
   // console.log(id, newData);
   dispatch({ type: LOADING_SUCESS });
@@ -46,11 +70,11 @@ export const updateMovie = (id, newData) => async (dispatch) => {
   }
 };
 
-//Movie Delete
+//action for Movie Delete
 export const deleteMovie = (id) => async (dispatch) => {
   dispatch({ type: LOADING_SUCESS });
   try {
-    let data = await deleteMovieAPI(id);
+    await deleteMovieAPI(id);
     dispatch({ type: REMOVE_MOVIE, payload: id });
   } catch (error) {
     dispatch({ type: ERROR_SUCESS });
