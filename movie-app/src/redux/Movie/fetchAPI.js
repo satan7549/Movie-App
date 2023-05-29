@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://puzzled-lime-turtle.cyclic.app/movie";
+const baseURL = "https://movie-app-backed.onrender.com/movie";
 
 //function for get All the Movies
 export const getAllMoviesAPI = async (queryString) => {
