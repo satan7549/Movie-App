@@ -1,7 +1,7 @@
 # Movie-App
 Movie-Library-App
 
-## Backend URL(Deploy on Render) :- [https://puzzled-lime-turtle.cyclic.app/movie](https://movie-app-backed.onrender.com/)
+## Backend URL(Deploy on Render) :- [https://movie-app-backed-main.onrender.com/](https://movie-app-backed-main.onrender.com/)
 
 ## Fronend URL (Deploye on Vercel) :- [https://movie-pcsofiogm-satan7549.vercel.app/](https://movie-app-azure-nine-86.vercel.app/)
 
