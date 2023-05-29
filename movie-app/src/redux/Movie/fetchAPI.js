@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://movie-app-backed.onrender.com/movie";
+const baseURL = "https://movie-app-backed-main.onrender.com/";
 
 //function for get All the Movies
 export const getAllMoviesAPI = async (queryString) => {
