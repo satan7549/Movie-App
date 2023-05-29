@@ -1,9 +1,9 @@
 # Movie-App
 Movie-Library-App
 
-## Backend URL(Deploy on Cyclic) :- https://puzzled-lime-turtle.cyclic.app/movie
+## Backend URL(Deploy on Render) :- [https://puzzled-lime-turtle.cyclic.app/movie](https://movie-app-backed.onrender.com/)
 
-## Fronend URL (Deploye on Netlify) :- https://splendid-vacherin-bea7dc.netlify.app/
+## Fronend URL (Deploye on Vercel) :- [https://splendid-vacherin-bea7dc.netlify.app/](https://movie-pcsofiogm-satan7549.vercel.app/)
 
 ### Tech Stack used:--
 # For Backend :-
